@@ -26,13 +26,13 @@ class ChatServerStub(object):
         )
     self.SendNotemulti = channel.unary_unary(
         '/grpc.ChatServer/SendNotemulti',
-        request_serializer=helloworld__pb2.Note.SerializeToString,
+        request_serializer=helloworld__pb2.ChatUserMessage.SerializeToString,
         response_deserializer=helloworld__pb2.Empty.FromString,
         )
     self.register = channel.unary_unary(
         '/grpc.ChatServer/register',
         request_serializer=helloworld__pb2.registerdetails.SerializeToString,
-        response_deserializer=helloworld__pb2.Empty.FromString,
+        response_deserializer=helloworld__pb2.APIResponse.FromString,
         )
     self.login = channel.unary_unary(
         '/grpc.ChatServer/login',
@@ -52,7 +52,12 @@ class ChatServerStub(object):
     self.ChatStreamUser = channel.unary_stream(
         '/grpc.ChatServer/ChatStreamUser',
         request_serializer=helloworld__pb2.Empty.SerializeToString,
-        response_deserializer=helloworld__pb2.Note.FromString,
+        response_deserializer=helloworld__pb2.ChatUserMessage.FromString,
+        )
+    self.RegisteredUsers = channel.unary_stream(
+        '/grpc.ChatServer/RegisteredUsers',
+        request_serializer=helloworld__pb2.Empty.SerializeToString,
+        response_deserializer=helloworld__pb2.registerdetails.FromString,
         )
 
 
@@ -61,8 +66,8 @@ class ChatServerServicer(object):
   pass
 
   def ChatStream(self, request, context):
-    """This bi-directional stream makes it possible to send and receive Notes between 2 persons
-    """
+    # missing associated documentation comment in .proto file
+    pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -116,6 +121,13 @@ class ChatServerServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def RegisteredUsers(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_ChatServerServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -131,13 +143,13 @@ def add_ChatServerServicer_to_server(servicer, server):
       ),
       'SendNotemulti': grpc.unary_unary_rpc_method_handler(
           servicer.SendNotemulti,
-          request_deserializer=helloworld__pb2.Note.FromString,
+          request_deserializer=helloworld__pb2.ChatUserMessage.FromString,
           response_serializer=helloworld__pb2.Empty.SerializeToString,
       ),
       'register': grpc.unary_unary_rpc_method_handler(
           servicer.register,
           request_deserializer=helloworld__pb2.registerdetails.FromString,
-          response_serializer=helloworld__pb2.Empty.SerializeToString,
+          response_serializer=helloworld__pb2.APIResponse.SerializeToString,
       ),
       'login': grpc.unary_unary_rpc_method_handler(
           servicer.login,
@@ -157,7 +169,12 @@ def add_ChatServerServicer_to_server(servicer, server):
       'ChatStreamUser': grpc.unary_stream_rpc_method_handler(
           servicer.ChatStreamUser,
           request_deserializer=helloworld__pb2.Empty.FromString,
-          response_serializer=helloworld__pb2.Note.SerializeToString,
+          response_serializer=helloworld__pb2.ChatUserMessage.SerializeToString,
+      ),
+      'RegisteredUsers': grpc.unary_stream_rpc_method_handler(
+          servicer.RegisteredUsers,
+          request_deserializer=helloworld__pb2.Empty.FromString,
+          response_serializer=helloworld__pb2.registerdetails.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

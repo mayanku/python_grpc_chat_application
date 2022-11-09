@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='helloworld.proto',
   package='grpc',
   syntax='proto3',
-  serialized_pb=_b('\n\x10helloworld.proto\x12\x04grpc\"\x07\n\x05\x45mpty\"%\n\x04Note\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\"D\n\x0fregisterdetails\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\"2\n\x0cLoginRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"<\n\x0b\x41PIResponse\x12\x17\n\x0fresponsemessage\x18\x01 \x01(\t\x12\x14\n\x0cresponsecode\x18\x02 \x01(\x05\"B\n\x0f\x43hatUserMessage\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x10\n\x08receiver\x18\x03 \x01(\t2\xec\x02\n\nChatServer\x12\'\n\nChatStream\x12\x0b.grpc.Empty\x1a\n.grpc.Note0\x01\x12#\n\x08SendNote\x12\n.grpc.Note\x1a\x0b.grpc.Empty\x12(\n\rSendNotemulti\x12\n.grpc.Note\x1a\x0b.grpc.Empty\x12.\n\x08register\x12\x15.grpc.registerdetails\x1a\x0b.grpc.Empty\x12.\n\x05login\x12\x12.grpc.LoginRequest\x1a\x11.grpc.APIResponse\x12(\n\x06logout\x12\x0b.grpc.Empty\x1a\x11.grpc.APIResponse\x12/\n\x08\x43hatUser\x12\x15.grpc.ChatUserMessage\x1a\n.grpc.Note0\x01\x12+\n\x0e\x43hatStreamUser\x12\x0b.grpc.Empty\x1a\n.grpc.Note0\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x10helloworld.proto\x12\x04grpc\"\x07\n\x05\x45mpty\"4\n\x04Note\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\r\n\x05group\x18\x03 \x01(\t\"9\n\tGroupNote\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\r\n\x05group\x18\x03 \x01(\t\"D\n\x0fregisterdetails\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\"2\n\x0cLoginRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"<\n\x0b\x41PIResponse\x12\x17\n\x0fresponsemessage\x18\x01 \x01(\t\x12\x14\n\x0cresponsecode\x18\x02 \x01(\x05\"B\n\x0f\x43hatUserMessage\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x10\n\x08receiver\x18\x03 \x01(\t\"\x13\n\x03key\x12\x0c\n\x04name\x18\x01 \x01(\t2\xc1\x03\n\nChatServer\x12\'\n\nChatStream\x12\x0b.grpc.Empty\x1a\n.grpc.Note0\x01\x12#\n\x08SendNote\x12\n.grpc.Note\x1a\x0b.grpc.Empty\x12\x33\n\rSendNotemulti\x12\x15.grpc.ChatUserMessage\x1a\x0b.grpc.Empty\x12\x34\n\x08register\x12\x15.grpc.registerdetails\x1a\x11.grpc.APIResponse\x12.\n\x05login\x12\x12.grpc.LoginRequest\x1a\x11.grpc.APIResponse\x12(\n\x06logout\x12\x0b.grpc.Empty\x1a\x11.grpc.APIResponse\x12/\n\x08\x43hatUser\x12\x15.grpc.ChatUserMessage\x1a\n.grpc.Note0\x01\x12\x36\n\x0e\x43hatStreamUser\x12\x0b.grpc.Empty\x1a\x15.grpc.ChatUserMessage0\x01\x12\x37\n\x0fRegisteredUsers\x12\x0b.grpc.Empty\x1a\x15.grpc.registerdetails0\x01\x62\x06proto3')
 )
 
 
@@ -70,6 +70,13 @@ _NOTE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='group', full_name='grpc.Note.group', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -83,7 +90,52 @@ _NOTE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=35,
-  serialized_end=72,
+  serialized_end=87,
+)
+
+
+_GROUPNOTE = _descriptor.Descriptor(
+  name='GroupNote',
+  full_name='grpc.GroupNote',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='grpc.GroupNote.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='message', full_name='grpc.GroupNote.message', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='group', full_name='grpc.GroupNote.group', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=89,
+  serialized_end=146,
 )
 
 
@@ -127,8 +179,8 @@ _REGISTERDETAILS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=74,
-  serialized_end=142,
+  serialized_start=148,
+  serialized_end=216,
 )
 
 
@@ -165,8 +217,8 @@ _LOGINREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=144,
-  serialized_end=194,
+  serialized_start=218,
+  serialized_end=268,
 )
 
 
@@ -203,8 +255,8 @@ _APIRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=196,
-  serialized_end=256,
+  serialized_start=270,
+  serialized_end=330,
 )
 
 
@@ -248,16 +300,49 @@ _CHATUSERMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=258,
-  serialized_end=324,
+  serialized_start=332,
+  serialized_end=398,
+)
+
+
+_KEY = _descriptor.Descriptor(
+  name='key',
+  full_name='grpc.key',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='grpc.key.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=400,
+  serialized_end=419,
 )
 
 DESCRIPTOR.message_types_by_name['Empty'] = _EMPTY
 DESCRIPTOR.message_types_by_name['Note'] = _NOTE
+DESCRIPTOR.message_types_by_name['GroupNote'] = _GROUPNOTE
 DESCRIPTOR.message_types_by_name['registerdetails'] = _REGISTERDETAILS
 DESCRIPTOR.message_types_by_name['LoginRequest'] = _LOGINREQUEST
 DESCRIPTOR.message_types_by_name['APIResponse'] = _APIRESPONSE
 DESCRIPTOR.message_types_by_name['ChatUserMessage'] = _CHATUSERMESSAGE
+DESCRIPTOR.message_types_by_name['key'] = _KEY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Empty = _reflection.GeneratedProtocolMessageType('Empty', (_message.Message,), dict(
@@ -273,6 +358,13 @@ Note = _reflection.GeneratedProtocolMessageType('Note', (_message.Message,), dic
   # @@protoc_insertion_point(class_scope:grpc.Note)
   ))
 _sym_db.RegisterMessage(Note)
+
+GroupNote = _reflection.GeneratedProtocolMessageType('GroupNote', (_message.Message,), dict(
+  DESCRIPTOR = _GROUPNOTE,
+  __module__ = 'helloworld_pb2'
+  # @@protoc_insertion_point(class_scope:grpc.GroupNote)
+  ))
+_sym_db.RegisterMessage(GroupNote)
 
 registerdetails = _reflection.GeneratedProtocolMessageType('registerdetails', (_message.Message,), dict(
   DESCRIPTOR = _REGISTERDETAILS,
@@ -302,6 +394,13 @@ ChatUserMessage = _reflection.GeneratedProtocolMessageType('ChatUserMessage', (_
   ))
 _sym_db.RegisterMessage(ChatUserMessage)
 
+key = _reflection.GeneratedProtocolMessageType('key', (_message.Message,), dict(
+  DESCRIPTOR = _KEY,
+  __module__ = 'helloworld_pb2'
+  # @@protoc_insertion_point(class_scope:grpc.key)
+  ))
+_sym_db.RegisterMessage(key)
+
 
 
 _CHATSERVER = _descriptor.ServiceDescriptor(
@@ -310,8 +409,8 @@ _CHATSERVER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=327,
-  serialized_end=691,
+  serialized_start=422,
+  serialized_end=871,
   methods=[
   _descriptor.MethodDescriptor(
     name='ChatStream',
@@ -336,7 +435,7 @@ _CHATSERVER = _descriptor.ServiceDescriptor(
     full_name='grpc.ChatServer.SendNotemulti',
     index=2,
     containing_service=None,
-    input_type=_NOTE,
+    input_type=_CHATUSERMESSAGE,
     output_type=_EMPTY,
     options=None,
   ),
@@ -346,7 +445,7 @@ _CHATSERVER = _descriptor.ServiceDescriptor(
     index=3,
     containing_service=None,
     input_type=_REGISTERDETAILS,
-    output_type=_EMPTY,
+    output_type=_APIRESPONSE,
     options=None,
   ),
   _descriptor.MethodDescriptor(
@@ -382,7 +481,16 @@ _CHATSERVER = _descriptor.ServiceDescriptor(
     index=7,
     containing_service=None,
     input_type=_EMPTY,
-    output_type=_NOTE,
+    output_type=_CHATUSERMESSAGE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='RegisteredUsers',
+    full_name='grpc.ChatServer.RegisteredUsers',
+    index=8,
+    containing_service=None,
+    input_type=_EMPTY,
+    output_type=_REGISTERDETAILS,
     options=None,
   ),
 ])

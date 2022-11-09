@@ -24,8 +24,13 @@ message Empty {}
 message Note {
     string name = 1;
     string message = 2;
+    string group=3;
 }
-
+message GroupNote {
+    string name = 1;
+    string message = 2;
+    string group=3;
+}
 
 message registerdetails{
     string username=1;
@@ -48,15 +53,18 @@ message ChatUserMessage{
     string message = 2;
     string receiver=3;
 }
+message key{
+    string name=1;
+}
 
 service ChatServer {
-    // This bi-directional stream makes it possible to send and receive Notes between 2 persons
     rpc ChatStream (Empty) returns (stream Note);
     rpc SendNote (Note) returns (Empty);
-    rpc SendNotemulti (Note) returns (Empty);
-    rpc register(registerdetails) returns(Empty);
+    rpc SendNotemulti (ChatUserMessage) returns (Empty);
+    rpc register(registerdetails) returns(APIResponse);
     rpc login(LoginRequest) returns(APIResponse);
     rpc logout(Empty) returns (APIResponse);
     rpc ChatUser(ChatUserMessage) returns(stream Note);
-    rpc ChatStreamUser (Empty) returns (stream Note);
+    rpc ChatStreamUser (Empty) returns (stream ChatUserMessage);
+    rpc RegisteredUsers(Empty) returns(stream registerdetails);
 }
